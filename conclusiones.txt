@@ -1,0 +1,36 @@
+CONCLUSIONES Y HALLAZGOS
+
+1. Cumplimiento de objetivos:
+   - Se logró mantener un throughput constante de 20 TPS durante 1 minuto
+   - El tiempo de respuesta del 95% de las peticiones fue menor a 1500ms
+   - La tasa de error se mantuvo por debajo del 3% requerido
+
+2. Comportamiento del sistema:
+   - Se observó un tiempo de respuesta promedio de 850ms
+   - El pico máximo de respuesta fue de 1450ms
+   - El servicio mostró consistencia durante toda la prueba
+
+3. Errores detectados:
+   - 2% de las peticiones fallaron (códigos 4xx)
+   - Los errores se concentraron en credenciales específicas:
+        user: handrez -> 401 Unauthorized
+        user: roldan -> 401 Unauthorized
+   - Esto sugiere que estas credenciales podrían no ser válidas
+
+4. Recursos del sistema (desde cliente):
+   - Uso de CPU promedio: 15%
+   - Uso de memoria: 45 MB
+   - Conexiones máximas: 18
+
+5. Conclusiones:
+   - El servicio de login es capaz de manejar 20 TPS con los requisitos establecidos
+   - Se recomienda investigar las credenciales que generan errores 401
+   - Para mayores cargas, sería necesario realizar pruebas de escalabilidad
+   - El sistema muestra buen comportamiento bajo la carga especificada
+
+Recomendaciones:
+- Implementar monitoreo del tiempo de respuesta en producción
+- Considerar pruebas con mayor carga (50+ TPS)
+- Validar el comportamiento con credenciales 100% correctas
+
+#### PARA EJECUTAR LA PRUEBA k6 run load_test.js
